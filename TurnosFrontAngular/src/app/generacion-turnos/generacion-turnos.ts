@@ -33,7 +33,7 @@ export class GeneracionTurnos implements OnInit {
 
   cargarServicios() {
     // Cambia el parámetro final (1) según corresponda
-    this.http.get<any>(`${environment.apiUrl}/Turnos/CargarServicios/1`).subscribe({
+    this.http.get<any>(`${environment.apiUrl}/Turnos/CargarServicios/${environment.comercioId}`).subscribe({
       next: (resp) => {
         this.servicios = resp.respuesta?.Servicios || [];
       },
