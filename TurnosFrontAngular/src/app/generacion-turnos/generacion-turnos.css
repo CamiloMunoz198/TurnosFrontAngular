@@ -215,6 +215,14 @@ body {
   display: block;
 }
 
+.turno-comercio {
+  text-align: center;
+  color: #2980b9;
+  font-size: 1.2rem;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
 @media (max-width: 700px) {
   .turno-form,
   .turno-resumen {

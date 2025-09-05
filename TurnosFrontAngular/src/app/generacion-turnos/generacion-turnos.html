@@ -1,4 +1,7 @@
 <h2 class="turno-title">Generar Turnos</h2>
+<div class="turno-comercio" *ngIf="servicios.length > 0">
+  {{ servicios[0].nomComercio }}
+</div>
 
 <form class="turno-form" (ngSubmit)="buscarTurnos()" #formTurnos="ngForm">
   <div class="turno-form-half-grid">
