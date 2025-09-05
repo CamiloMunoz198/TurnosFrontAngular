@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -11,10 +11,11 @@ import { environment } from '../../environments/environment';
   templateUrl: './generacion-turnos.html',
   styleUrl: './generacion-turnos.css'
 })
-export class GeneracionTurnos {
+export class GeneracionTurnos implements OnInit {
   fechaInicio: string = '';
   fechaFin: string = '';
   idServicio: number | null = null;
+  servicios: any[] = [];
   turnos: any[] = [];
   loading: boolean = false;
   error: string = '';
@@ -26,11 +27,25 @@ export class GeneracionTurnos {
 
   constructor(private http: HttpClient) {}
 
+  ngOnInit() {
+    this.cargarServicios();
+  }
+
+  cargarServicios() {
+    // Cambia el parámetro final (1) según corresponda
+    this.http.get<any>(`${environment.apiUrl}/Turnos/CargarServicios/1`).subscribe({
+      next: (resp) => {
+        this.servicios = resp.respuesta?.Servicios || [];
+      },
+      error: () => {
+        this.error = 'Error al cargar los servicios';
+      }
+    });
+  }
+
   buscarTurnos() {
-    // Marcar el formulario como enviado
     this.formTurnos.form.markAllAsTouched();
 
-    // Si el formulario es inválido, enfoca el primer campo vacío
     if (!this.formTurnos.form.valid) {
       if (!this.fechaInicio) {
         this.fechaInicioInput.nativeElement.focus();

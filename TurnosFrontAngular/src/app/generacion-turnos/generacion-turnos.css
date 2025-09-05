@@ -166,6 +166,27 @@ body {
   outline: none;
 }
 
+.turno-form-field select {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #bfc9d1;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: border 0.2s;
+  height: 38px;
+  box-sizing: border-box;
+}
+
+.turno-form-field select:focus {
+  border-color: #2980b9;
+  outline: none;
+}
+
+.turno-form-field select.input-error {
+  border: 2px solid #c0392b;
+}
+
 .input-error {
   border: 2px solid #c0392b !important;
 }

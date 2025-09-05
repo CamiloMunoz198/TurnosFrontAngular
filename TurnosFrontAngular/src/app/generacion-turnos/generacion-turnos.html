@@ -18,8 +18,13 @@
       </div>
       <div class="turno-form-field">
         <label for="idServicio">Servicio:</label>
-        <input type="number" id="idServicio" [(ngModel)]="idServicio" name="idServicio" required #idServicioCtrl="ngModel" #idServicioInput
-          [class.input-error]="formTurnos.submitted && idServicioCtrl.invalid" />
+        <select id="idServicio" [(ngModel)]="idServicio" name="idServicio" required #idServicioCtrl="ngModel" #idServicioInput
+          [class.input-error]="formTurnos.submitted && idServicioCtrl.invalid">
+          <option value="" disabled selected>Seleccione un servicio</option>
+          <option *ngFor="let servicio of servicios" [value]="servicio.idServicio">
+            {{servicio.nomServicio}}
+          </option>
+        </select>
         <span *ngIf="formTurnos.submitted && idServicioCtrl.invalid" class="campo-error">*</span>
       </div>
     </div>
