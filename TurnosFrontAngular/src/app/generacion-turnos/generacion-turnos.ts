@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
@@ -19,9 +19,29 @@ export class GeneracionTurnos {
   loading: boolean = false;
   error: string = '';
 
+  @ViewChild('formTurnos') formTurnos!: NgForm;
+  @ViewChild('fechaInicioInput') fechaInicioInput!: ElementRef;
+  @ViewChild('fechaFinInput') fechaFinInput!: ElementRef;
+  @ViewChild('idServicioInput') idServicioInput!: ElementRef;
+
   constructor(private http: HttpClient) {}
 
   buscarTurnos() {
+    // Marcar el formulario como enviado
+    this.formTurnos.form.markAllAsTouched();
+
+    // Si el formulario es inválido, enfoca el primer campo vacío
+    if (!this.formTurnos.form.valid) {
+      if (!this.fechaInicio) {
+        this.fechaInicioInput.nativeElement.focus();
+      } else if (!this.fechaFin) {
+        this.fechaFinInput.nativeElement.focus();
+      } else if (!this.idServicio) {
+        this.idServicioInput.nativeElement.focus();
+      }
+      return;
+    }
+
     this.loading = true;
     this.error = '';
     const body = {
