@@ -1,0 +1,48 @@
+<h2 class="turno-title">Generar Turnos</h2>
+
+<form class="turno-form" (ngSubmit)="buscarTurnos()" #formTurnos="ngForm">
+  <div class="turno-form-row">
+    <label for="fechaInicio">Fecha Inicio:</label>
+    <input type="date" id="fechaInicio" [(ngModel)]="fechaInicio" name="fechaInicio" required />
+
+    <label for="fechaFin">Fecha Fin:</label>
+    <input type="date" id="fechaFin" [(ngModel)]="fechaFin" name="fechaFin" required />
+
+    <label for="idServicio">Servicio:</label>
+    <input type="number" id="idServicio" [(ngModel)]="idServicio" name="idServicio" required />
+
+    <button type="submit" [disabled]="loading || !formTurnos.form.valid">Generar Turnos</button>
+  </div>
+</form>
+
+<div *ngIf="loading" class="turno-resumen">
+  <p>Cargando turnos...</p>
+</div>
+<div *ngIf="error" class="turno-resumen">
+  <p style="color: #c0392b;">{{error}}</p>
+</div>
+
+<div *ngIf="turnos.length > 0" class="turno-resumen">
+  <table class="turno-table">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Hora Inicio</th>
+        <th>Hora Fin</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let turno of turnos">
+        <td>{{turno.fechaTurno}}</td>
+        <td>{{turno.horaInicio}}</td>
+        <td>{{turno.horaFin}}</td>
+        <td>
+          <span [style.color]="turno.estado ? '#c0392b' : '#27ae60'">
+            {{turno.estado ? 'Ocupado' : 'Disponible'}}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
