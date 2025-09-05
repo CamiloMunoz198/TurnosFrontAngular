@@ -14,7 +14,7 @@ body {
 
 .turno-form {
   background: #fff;
-  max-width: 600px;
+  max-width: 700px;
   margin: 32px auto 24px auto;
   padding: 24px 20px;
   border-radius: 12px;
@@ -26,6 +26,13 @@ body {
   align-items: center;
   gap: 18px;
   flex-wrap: wrap;
+}
+
+.turno-form-row-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 160px;
+  gap: 18px;
+  align-items: center;
 }
 
 .turno-form label {
@@ -97,15 +104,107 @@ body {
   border: 2px solid #c0392b !important;
 }
 
+.turno-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 18px;
+  align-items: end;
+}
+
+.turno-form-col {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.turno-form-btn {
+  align-items: flex-end;
+  justify-content: flex-end;
+  display: flex;
+  height: 100%;
+}
+
+.turno-form-half-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.turno-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  justify-content: center;
+}
+
+.turno-form-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.turno-form-field label {
+  min-width: 90px;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.turno-form-field input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #bfc9d1;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: border 0.2s;
+}
+
+.turno-form-field input:focus {
+  border-color: #2980b9;
+  outline: none;
+}
+
+.input-error {
+  border: 2px solid #c0392b !important;
+}
+
+.campo-error {
+  color: #c0392b;
+  font-size: 0.95rem;
+  margin-left: 0;
+  margin-top: 4px;
+  display: block;
+}
+
+.turno-form-btn-half {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.turno-form-btn-half button {
+  width: 50%;
+  min-width: 120px;
+  height: 48px;
+  font-size: 1.1rem;
+  margin: 0 auto;
+  display: block;
+}
+
 @media (max-width: 700px) {
   .turno-form,
   .turno-resumen {
     max-width: 98vw;
     padding: 12px 2vw;
   }
-  .turno-form-row {
-    flex-direction: column;
-    gap: 10px;
-    align-items: stretch;
+  .turno-form-half-grid {
+    grid-template-columns: 1fr;
+  }
+  .turno-form-btn-half button {
+    width: 100%;
+    height: 40px;
   }
 }
